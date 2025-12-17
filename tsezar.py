@@ -1,0 +1,75 @@
+def caesarCipher(msg, edge):
+    l = len(msg)
+    c_msg = []
+    for i in range(0, edge):
+        for j in range(i, l, edge):
+            c_msg.append(msg[j])
+    string_c = ''
+    for k in range(len(c_msg)):
+        string_c += c_msg[k]
+    print(string_c)
+
+def keyDecipherWithKey(msg, edge):
+    l = len(msg)
+    msg = msg.lower()
+    i_msg = [''] * l 
+    index = 0
+    for i in range(0, edge):
+        for j in range(i, l, edge):
+            i_msg[j] = msg[index] 
+            index += 1
+    print(i_msg)
+    string_A = ''
+    for k in range(len(i_msg)):
+        string_A += i_msg[k]
+    return string_A
+
+def KeyDecipherNoKeyNew(msg):
+    stringList = []
+    banSyllableList = ["кы", "кя", "кё", "кю","гы", "гя", "гё", "гю", "чы", "чя", "чю","шы", "шя", "шю",
+                       "аь", "аы", "аъ", "вэ", "гф", "гх", "гъ", "гь", "гэ", "ёъ", "ёь", "ёы", "ёэ", "еъ",
+                       "еь", "еы", "еэ", "ёя", "жф", "жх", "жш", "жщ", "зщ", "иь", "иы", "иъ", "йа", "йё",
+                       "йж", "ёи", "ёе", "ёё", "ёа", "жй", "зй", "йй", "йь", "йы", "йъ", "йэ", "кй", "кщ",
+                       "кь", "къ", "лй", "лъ", "лэ", "мй", "мъ", "нй", "оъ", "оы", "оь", "пв", "пг", "пж",
+                       "пз", "пй", "пъ", "ръ", "сй", "тй", "уъ", "уы", "уь", "фб", "фз", "фж", "фй", "фп",
+                       "фх", "фц", "фъ", "фэ", "хё", "хж", "хй", "хщ", "хы", "хь", "хю", "хя", "цб", "цё",
+                       "цж", "цй", "цф", "цх", "цч", "цщ", "цъ", "ць", "ця", "чб", "чг", "чз", "чй", "чп",
+                       "чф", "чщ", "чъ", "чы", "шд", "шж", "шз", "шй", "шш", "шщ", "шъ", "шы", "щб", "щг",
+                       "щд", "щж", "щз", "щй", "щп", "щт", "щф", "щх", "щц", "щч", "щш", "щщ", "щъ", "ъа",
+                       "ъб", "ъв", "ъг", "ъд", "ъж", "ъз", "ъи", "ъй", "ък", "ъл", "ъм", "ън", "ъо", "ъп",
+                       "ър", "ъс", "ът", "ъу", "ъф", "ъх", "ъц", "ъч", "ъш", "ъщ", "ъъ", "ъы", "ъь", "ъэ",
+                       "ыа", "ыё", "ыо", "ыф", "ыь", "ыы", "ыъ", "ыэ", "ьа", "ьй", "ьл", "ьу", "ьъ", "ьы",
+                       "ьъ", "эа", "эе", "эё", "эц", "эч", "эъ", "эы", "эь", "ээ", "эю", "юу", "юь", "юы",
+                       "юь", "яа", "яё", "яо", "яъ", "яы", "яь", "яэ",
+                       "жы", "жя", "жю", "хы", "хя", "хё", "хю", "ця", "цё", "цю", "що","щы", "щя", "щю"]
+    for i in range(0, len(msg)-1):
+        stringList.append(keyDecipherWithKey(msg, i))
+    resStrings = []
+    for j in stringList:
+        counter = 0
+        for k in banSyllableList:
+            if k in j:
+                counter += 1
+        resStrings.append(j)
+        resStrings.append(counter)
+        counter = 0
+    for r in range( len(resStrings)):
+        if resStrings[r] == counter:
+            print(resStrings[r-1])
+    userAns = "-1"
+    while userAns != 0:
+        print("Если вы не палучили результат - ввидите 1, иначе 0")
+        userAns = int(input())
+        if userAns == 1:
+            counter += 1
+            for l in range( len(resStrings)):
+                if resStrings[l] == counter:
+                    print(resStrings[l-1])
+        elif userAns == 0:
+            print("Праграма завершена")
+        else:
+            print("Ашибка")
+            
+            
+KeyDecipherNoKeyNew("ян ,е  аьы ат гнзе зюочоеншт")
+
